@@ -1,0 +1,1483 @@
+{
+	"info": {
+		"_postman_id": "f8d02ba2-795a-4435-a7da-f033ec01434a",
+		"name": "TypeScript-MongoDB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25910793"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Jane Doe",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "jane.doe@yahoo.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "jdpassword",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "{{BASE_URL}}/users",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Jane Doe",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "jane.doe@yahoo.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "jdpassword",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/users",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "119"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"77-6q+t7a5zhFruR6k83poHUJsVFh4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 05:50:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"65cc54b32b2b634cbb183d9e\",\n    \"name\": \"Jane Doe\",\n    \"email\": \"jane.doe@yahoo.com\",\n    \"createdAt\": \"2024-02-14T05:50:43.055Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Session",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(responseBody)\r",
+									"console.log(jsonData)\r",
+									"\r",
+									"console.log('Setting access and refresh tokens...')\r",
+									"postman.setEnvironmentVariable('accessToken', jsonData.accessToken)\r",
+									"postman.setEnvironmentVariable('refreshToken', jsonData.refreshToken)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "jane.doe@yahoo.co",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "jdpassword",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/sessions",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"sessions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invalid email or password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "jane.doe@yahoo.co",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "jdpassword",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/sessions",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"sessions"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "403"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"193-uoo43qZLAfHYkPCsv0V9vrME3tA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 05:56:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Invalid email or password\",\n    \"stack\": \"Error: Invalid email or password\\n    at C:\\\\Users\\\\USER\\\\Desktop\\\\typescript-mongodb\\\\src\\\\controllers\\\\sessionController.ts:13:19\\n    at Generator.next (<anonymous>)\\n    at fulfilled (C:\\\\Users\\\\USER\\\\Desktop\\\\typescript-mongodb\\\\src\\\\controllers\\\\sessionController.ts:5:58)\\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "jane.doe@yahoo.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "jdpassword",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/sessions",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"sessions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "564"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"234-w5PmsmC2yV7yFiMC1/IVCBcNYr0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 06:30:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWNjNTRiMzJiMmI2MzRjYmIxODNkOWUiLCJlbWFpbCI6ImphbmUuZG9lQHlhaG9vLmNvbSIsInNlc3Npb24iOiI2NWNjNWUxZTBkZDUyMjczNDA3ZWFlZGEiLCJpYXQiOjE3MDc4OTIyNTQsImV4cCI6MTcwNzg5MjU1NH0.n5jOpBkUuNtjbGnLU6U7DJGx4tc274JbJB6OLENGjCg\",\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWNjNTRiMzJiMmI2MzRjYmIxODNkOWUiLCJlbWFpbCI6ImphbmUuZG9lQHlhaG9vLmNvbSIsInNlc3Npb24iOiI2NWNjNWUxZTBkZDUyMjczNDA3ZWFlZGEiLCJpYXQiOjE3MDc4OTIyNTQsImV4cCI6MTcwNzg5MzE1NH0.Ro2oGAadFsDtWvTyda1mt9EQt2URjK6vswE56yQzIpU\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Sessions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']\r",
+									"\r",
+									"if (newAccessToken) {\r",
+									"    console.log('Setting new access token...')\r",
+									"    postman.setEnvironmentVariable('accessToken', newAccessToken)\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/sessions",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"sessions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "{{BASE_URL}}/sessions",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-refresh",
+										"value": "{{refreshToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/sessions",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"sessions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "207"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cf-VWLX6YTNXqFmbFl2nykPH99HiLc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 07:34:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"65cc6cd0b3b66a039d3d07db\",\n        \"userId\": \"65cc54b32b2b634cbb183d9e\",\n        \"userAgent\": \"PostmanRuntime/7.36.1\",\n        \"valid\": true,\n        \"createdAt\": \"2024-02-14T07:33:36.390Z\",\n        \"updatedAt\": \"2024-02-14T07:33:36.390Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete Session",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']\r",
+									"\r",
+									"if (newAccessToken) {\r",
+									"    console.log('Setting new access token...')\r",
+									"    postman.setEnvironmentVariable('accessToken', newAccessToken)\r",
+									"}\r",
+									"\r",
+									"const jsonData = JSON.parse(responseBody)\r",
+									"console.log(jsonData)\r",
+									"\r",
+									"console.log(`Clearing access and refresh tokens...`)\r",
+									"postman.setEnvironmentVariable('accessToken', jsonData.accessToken)\r",
+									"postman.setEnvironmentVariable('refreshToken', jsonData.refreshToken)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/sessions",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"sessions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "{{BASE_URL}}/sessions",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-refresh",
+										"value": "{{refreshToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/sessions",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"sessions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-JQGER0KIsgSZrEMQLjGOtqVfEv4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 07:19:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": null,\n    \"refreshToken\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(responseBody)\r",
+									"postman.setEnvironmentVariable('id', jsonData._id)\r",
+									"\r",
+									"\r",
+									"const newAccessToken = responseHeaders['x-access-token']\r",
+									"\r",
+									"if (newAccessToken) {\r",
+									"    console.log('Setting new access token...')\r",
+									"    postman.setEnvironmentVariable('accessToken', newAccessToken)\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "perfume",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "50",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/products",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "No API key",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-refresh",
+										"value": "{{refreshToken}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "perfume",
+											"type": "text"
+										},
+										{
+											"key": "quantity",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "50",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/products",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-PatfYBLj4Um1qTm5zrukoLhNyPU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 07:46:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Forbidden"
+						},
+						{
+							"name": "Bad request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-refresh",
+										"value": "{{refreshToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "perfume",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "quantity",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "50",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/products",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "x-access-token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWNjNTRiMzJiMmI2MzRjYmIxODNkOWUiLCJlbWFpbCI6ImphbmUuZG9lQHlhaG9vLmNvbSIsInNlc3Npb24iOiI2NWNjNmYwZGIzYjY2YTAzOWQzZDA3ZjAiLCJpYXQiOjE3MDc4OTcwNDYsImV4cCI6MTcwNzg5NzE2Nn0.lPAyB9Aenqua0dwJozzQvW3VUPJH6q9MkAPTW9A0hqI"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1074"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"432-MouuEegh9zn3S4hQIechD72n51k\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 07:50:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Provide all product fields\",\n    \"stack\": \"Error: Provide all product fields\\n    at C:\\\\Users\\\\USER\\\\Desktop\\\\typescript-mongodb\\\\src\\\\controllers\\\\productController.ts:12:19\\n    at Generator.next (<anonymous>)\\n    at C:\\\\Users\\\\USER\\\\Desktop\\\\typescript-mongodb\\\\src\\\\controllers\\\\productController.ts:8:71\\n    at new Promise (<anonymous>)\\n    at __awaiter (C:\\\\Users\\\\USER\\\\Desktop\\\\typescript-mongodb\\\\src\\\\controllers\\\\productController.ts:4:12)\\n    at createProduct (C:\\\\Users\\\\USER\\\\Desktop\\\\typescript-mongodb\\\\src\\\\controllers\\\\productController.ts:4:81)\\n    at Layer.handle [as handle_request] (C:\\\\Users\\\\USER\\\\Desktop\\\\typescript-mongodb\\\\node_modules\\\\express\\\\lib\\\\router\\\\layer.js:95:5)\\n    at next (C:\\\\Users\\\\USER\\\\Desktop\\\\typescript-mongodb\\\\node_modules\\\\express\\\\lib\\\\router\\\\route.js:144:13)\\n    at requireUser (C:\\\\Users\\\\USER\\\\Desktop\\\\typescript-mongodb\\\\src\\\\middlewares\\\\requireUser.ts:10:12)\\n    at Layer.handle [as handle_request] (C:\\\\Users\\\\USER\\\\Desktop\\\\typescript-mongodb\\\\node_modules\\\\express\\\\lib\\\\router\\\\layer.js:95:5)\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-refresh",
+										"value": "{{refreshToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "perfume",
+											"type": "text"
+										},
+										{
+											"key": "quantity",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "50",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/products",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "197"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c5-0dQgAkoLOiEfag0wA1m4dXie80Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 07:52:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": \"65cc54b32b2b634cbb183d9e\",\n    \"name\": \"perfume\",\n    \"quantity\": 2,\n    \"price\": 50,\n    \"_id\": \"65cc7133b3b66a039d3d07f4\",\n    \"createdAt\": \"2024-02-14T07:52:19.706Z\",\n    \"updatedAt\": \"2024-02-14T07:52:19.706Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/products",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "199"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c7-zCfhO9xvPwyjaVrzKwXzJ/jcE30\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 08:00:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"65cc7133b3b66a039d3d07f4\",\n        \"userId\": \"65cc54b32b2b634cbb183d9e\",\n        \"name\": \"perfume\",\n        \"quantity\": 2,\n        \"price\": 50,\n        \"createdAt\": \"2024-02-14T07:52:19.706Z\",\n        \"updatedAt\": \"2024-02-14T07:52:19.706Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Single Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/products/{{id}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"{{id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Product not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/{{id}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"{{id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "457"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c9-IQnniEGJbY4r+79q4gbFplPtGIQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 08:04:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Cannot find product with ID 65cc7133b3b66a039d3d07f2\",\n    \"stack\": \"Error: Cannot find product with ID 65cc7133b3b66a039d3d07f2\\n    at C:\\\\Users\\\\USER\\\\Desktop\\\\typescript-mongodb\\\\src\\\\controllers\\\\productController.ts:45:19\\n    at Generator.next (<anonymous>)\\n    at fulfilled (C:\\\\Users\\\\USER\\\\Desktop\\\\typescript-mongodb\\\\src\\\\controllers\\\\productController.ts:5:58)\\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/{{id}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"{{id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "197"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c5-NDlHK0mD27lvCO9I2Po1e+R1/Ds\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 08:10:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"65cc7133b3b66a039d3d07f4\",\n    \"userId\": \"65cc54b32b2b634cbb183d9e\",\n    \"name\": \"perfume\",\n    \"quantity\": 2,\n    \"price\": 50,\n    \"createdAt\": \"2024-02-14T07:52:19.706Z\",\n    \"updatedAt\": \"2024-02-14T07:52:19.706Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']\r",
+									"\r",
+									"if (newAccessToken) {\r",
+									"    console.log('Setting new access token...')\r",
+									"    postman.setEnvironmentVariable('accessToken', newAccessToken)\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "quantity ",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "75",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/products/{{id}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"{{id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "No API key",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-refresh",
+										"value": "{{refreshToken}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "quantity ",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "75",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/products/{{id}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"{{id}}"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-PatfYBLj4Um1qTm5zrukoLhNyPU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 08:13:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Forbidden"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-refresh",
+										"value": "{{refreshToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "perfume",
+											"type": "text"
+										},
+										{
+											"key": "quantity",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "75",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/products/{{id}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"{{id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "x-access-token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWNjNTRiMzJiMmI2MzRjYmIxODNkOWUiLCJlbWFpbCI6ImphbmUuZG9lQHlhaG9vLmNvbSIsInNlc3Npb24iOiI2NWNjN2VmZWIzYjY2YTAzOWQzZDA4MjkiLCJpYXQiOjE3MDc5MDE0NDksImV4cCI6MTcwNzkwMTU2OX0.kNuLg4CbvKBp3kHqv3Vmywi6z0Wn7-ZQhFDA9XbJfas"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "197"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c5-Fn2Fw9hHFu8VnHoNSnRWI+XqXus\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 09:04:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"65cc7133b3b66a039d3d07f4\",\n    \"userId\": \"65cc54b32b2b634cbb183d9e\",\n    \"name\": \"perfume\",\n    \"quantity\": 3,\n    \"price\": 75,\n    \"createdAt\": \"2024-02-14T07:52:19.706Z\",\n    \"updatedAt\": \"2024-02-14T09:01:20.499Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']\r",
+									"\r",
+									"if (newAccessToken) {\r",
+									"    console.log('Setting new access token...')\r",
+									"    postman.setEnvironmentVariable('accessToken', newAccessToken)\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/products/{{id}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"{{id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-refresh",
+										"value": "{{refreshToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/products/{{id}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"{{id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "x-access-token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWNjNTRiMzJiMmI2MzRjYmIxODNkOWUiLCJlbWFpbCI6ImphbmUuZG9lQHlhaG9vLmNvbSIsInNlc3Npb24iOiI2NWNjODNhM2IzYjY2YTAzOWQzZDA4NDQiLCJpYXQiOjE3MDc5MDIwNDMsImV4cCI6MTcwNzkwMjE2M30.qoPldilOsagCHIPFu8_oxRcCXvjiUGaUOjEXfiDC41g"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 09:14:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "OK"
+						},
+						{
+							"name": "No API key",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-refresh",
+										"value": "{{refreshToken}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/products/{{id}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"{{id}}"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-PatfYBLj4Um1qTm5zrukoLhNyPU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 09:17:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Forbidden"
+						},
+						{
+							"name": "Product not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-refresh",
+										"value": "{{refreshToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/products/{{id}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"{{id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "x-access-token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWNjNTRiMzJiMmI2MzRjYmIxODNkOWUiLCJlbWFpbCI6ImphbmUuZG9lQHlhaG9vLmNvbSIsInNlc3Npb24iOiI2NWNjODNhM2IzYjY2YTAzOWQzZDA4NDQiLCJpYXQiOjE3MDc5MDIzMDgsImV4cCI6MTcwNzkwMjQyOH0.Pw1PGlYkxnY5c_3ViVRC7vgJt5FWlfXBppk9BhoMRjc"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Feb 2024 09:18:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				}
+			]
+		}
+	]
+}

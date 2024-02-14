@@ -1,11 +1,31 @@
 import { Express } from "express"
-import * as userController from './controllers/user.controller'
+import { createProduct, getProducts, getProductById, updateProduct, deleteProduct } from "./controllers/productController"
+import { requireUser } from "./middlewares/requireUser"
+import { createUser } from "./controllers/userController"
+import { createSession, getSessions, deleteSession } from "./controllers/sessionController"
 
 const routes = (app: Express) => {
-    // @route    GET
-    // @desc     Get all users
+    app.post('/users', createUser)
+
+    app.post('/sessions', createSession)
+
+    app.get('/sessions', requireUser, getSessions)
+
+    app.delete('/sessions', requireUser, deleteSession)
+
+    // @route    POST
+    // @desc     Create a product
     // @access   Private
-    app.get('/api/users', userController.get)
+    app.post('/products', requireUser, createProduct)
+
+    app.get('/products', getProducts)
+
+    app.get('/products/:id', getProductById)
+
+    app.put('/products/:id', requireUser, updateProduct)
+
+    app.delete('/products/:id', requireUser, deleteProduct)
+
 }
 
 export default routes
