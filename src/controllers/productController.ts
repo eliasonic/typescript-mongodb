@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { Product } from '../models/productModel'
+import { GetProducts } from '../service/productService'
 
 const createProduct = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -22,10 +23,11 @@ const createProduct = async (req: Request, res: Response, next: NextFunction) =>
 
 const getProducts = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const products = await Product.find({})
+        const products = await GetProducts()
 
         if (!products) {
-            return res.sendStatus(404)
+            res.status(404)
+            throw new Error('No product found!')
         }
 
         return res.status(200).json(products)
